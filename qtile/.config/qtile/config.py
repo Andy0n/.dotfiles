@@ -109,17 +109,17 @@ keys = [
     Key([mod, "shift"], "f", lazy.window.toggle_floating(), desc="Toggle floating"),
 ]
 
-group_names = [  # Will change for Icons prbly
-    ("WWW", {"layout": "monadtall"}),
-    ("DEV", {"layout": "monadtall"}),
-    ("SYS", {"layout": "monadtall"}),
-    ("DOC", {"layout": "monadtall"}),
-    ("VM", {"layout": "monadtall"}),
-    ("CHAT", {"layout": "monadtall"}),
-    ("MISC1", {"layout": "monadtall"}),
-    ("MISC2", {"layout": "monadtall"}),
-    ("GFX", {"layout": "floating"}),
-    ("STEAM", {"layout": "floating"}),
+group_names = [
+    ("\uf269", {"layout": "monadtall"}),  # nf-fa-firefox
+    ("\ue710", {"layout": "monadtall"}),  # nf-dev-stackoverflow
+    ("\ue7a2", {"layout": "monadtall"}),  # nf-dev-terminal_badge
+    ("\ue796", {"layout": "monadtall"}),  # nf-dev-code
+    ("\uf864", {"layout": "monadtall"}),  # nf-mdi-message_outline
+    ("\uf4a5", {"layout": "monadtall"}),  # nf-oct-file
+    ("\uf6ef", {"layout": "monadtall"}),  # nf-mdi-email_outline
+    ("\uf499", {"layout": "monadtall"}),  # nf-oct-breaker
+    ("\uf48f", {"layout": "floating"}),  # nf-oct-paintcan
+    ("\uf1b6", {"layout": "floating"}),  # nf-fa-steam
 ]
 
 groups = [Group(name, **kwargs) for name, kwargs in group_names]
@@ -161,7 +161,7 @@ def init_widgets_list():
         widget.Sep(linewidth=0, padding=6, foreground=fg, background=bg),
         widget.GroupBox(
             font="Fira Sans Bold",
-            fontsize=10,
+            fontsize=20,
             margin_y=3,
             margin_x=0,
             padding_y=5,
