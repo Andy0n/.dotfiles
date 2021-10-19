@@ -54,6 +54,18 @@ orange = colors["orange"][bright]
 
 
 keys = [
+    # Extra:
+    Key(
+        [mod, "shift"],
+        "s",
+        lazy.spawn(
+            "scrot -szb -e '" + os.path.expanduser("~") + "/scripts/dropshadow.sh $f'"
+        ),
+    ),
+    # GNOME:
+    Key([mod, "control"], "l", lazy.spawn("gnome-screensaver-command -l")),
+    Key([mod, "control"], "q", lazy.spawn("gnome-session-quit --logout --no-prompt")),
+    Key([mod, "shift", "control"], "q", lazy.spawn("gnome-session-quit --power-off")),
     # General:
     Key([mod, "shift"], "r", lazy.restart(), "Restart Qtile"),
     Key([mod, "shift"], "q", lazy.shutdown(), "Shutdown Qtile"),
@@ -109,26 +121,44 @@ keys = [
     Key([mod, "shift"], "f", lazy.window.toggle_floating(), desc="Toggle floating"),
 ]
 
-group_names = [
-    ("\uf269", {"layout": "monadtall"}),  # nf-fa-firefox
-    ("\ue710", {"layout": "monadtall"}),  # nf-dev-stackoverflow
-    ("\ue7a2", {"layout": "monadtall"}),  # nf-dev-terminal_badge
-    ("\ue796", {"layout": "monadtall"}),  # nf-dev-code
-    ("\uf864", {"layout": "monadtall"}),  # nf-mdi-message_outline
-    ("\uf4a5", {"layout": "monadtall"}),  # nf-oct-file
-    ("\uf6ef", {"layout": "monadtall"}),  # nf-mdi-email_outline
-    ("\uf499", {"layout": "monadtall"}),  # nf-oct-breaker
-    ("\uf48f", {"layout": "floating"}),  # nf-oct-paintcan
-    ("\uf1b6", {"layout": "floating"}),  # nf-fa-steam
+groups = [
+    Group(
+        "1", label="\uf269", layout="monadtall", matches=[Match("firefox")]
+    ),  # nf-fa-firefox
+    Group("2", label="\ue710", layout="monadtall"),  # nf-dev-stackoverflow
+    Group("3", label="\ue7a2", layout="monadtall"),  # nf-dev-terminal_badge
+    Group("4", label="\ue796", layout="monadtall"),  # nf-dev-code
+    Group(
+        "5",
+        label="\uf864",
+        layout="monadtall",
+        matches=[
+            Match(wm_class=["discord", "teamspeak", "zoom", "mattermost-desktop"])
+        ],
+    ),  # nf-mdi-message_outline
+    Group(
+        "6",
+        label="\uf4a5",
+        layout="monadtall",
+        matches=[Match("libreoffice", "writer", "qpdfview")],
+    ),  # nf-oct-file
+    Group(
+        "7", label="\uf6ef", layout="monadtall", matches=[Match("thunderbird")]
+    ),  # nf-mdi-email_outline
+    Group("8", label="\uf499", layout="monadtall"),  # nf-oct-breaker
+    Group("9", label="\uf48f", layout="floating"),  # nf-oct-paintcan
+    Group(
+        "0", label="\uf1b6", layout="floating", matches=[Match("steam")]
+    ),  # nf-fa-steam
 ]
 
-groups = [Group(name, **kwargs) for name, kwargs in group_names]
-
-for i, (name, kwargs) in enumerate(group_names, 1):
-    # Switch to group i:
-    keys.append(Key([mod], str(i if i < 10 else 0), lazy.group[name].toscreen()))
-    # Move current window to group i:
-    keys.append(Key([mod, "shift"], str(i if i < 10 else 0), lazy.window.togroup(name)))
+for i in groups:
+    keys.extend(
+        [
+            Key([mod], i.name, lazy.group[i.name].toscreen()),
+            Key([mod, "shift"], i.name, lazy.window.togroup(i.name)),
+        ]
+    )
 
 layout_theme = {
     "border_width": 2,
@@ -170,18 +200,20 @@ def init_widgets_list():
             rounded=False,
             active=aqua,
             inactive=fg,
-            block_highlight_text_color=bg,
+            block_highlight_text_color=purple,
             highlight_color=fg,
             highlight_method="line",
             this_current_screen_border=aqua,
-            # this_screen_border=purple,
-            # other_current_screen_border=orange,
-            # other_screen_border=yellow,
+            this_screen_border=blue,
+            other_current_screen_border=red,
+            other_screen_border=yellow,
             foreground=fg,
             background=bg,
         ),
         widget.Sep(linewidth=0, padding=40, foreground=fg, background=bg),
-        widget.WindowName(foreground=fg, background=bg, padding=0),
+        widget.WindowName(
+            foreground=fg, background=bg, font="Fira Sans Regular", padding=0
+        ),
         widget.Sep(linewidth=0, padding=6, foreground=fg, background=bg),
         widget.TextBox(
             text=mySep,
@@ -204,7 +236,6 @@ def init_widgets_list():
             padding=mySepPadding,
             fontsize=mySepSize,
         ),
-        widget.Systray(background=yellow, padding=5),
         widget.TextBox(
             text=mySep,
             background=yellow,
@@ -212,14 +243,6 @@ def init_widgets_list():
             padding=mySepPadding,
             fontsize=mySepSize,
         ),
-        widget.CurrentLayoutIcon(
-            # custom_icon_paths=[os.path.expanduser("~/.config/qtile/icons")],
-            foreground=bg,
-            background=green,
-            padding=0,
-            scale=0.7,
-        ),
-        widget.CurrentLayout(foreground=bg, background=green, padding=5),
         widget.TextBox(
             text=mySep,
             background=green,
@@ -227,7 +250,7 @@ def init_widgets_list():
             padding=mySepPadding,
             fontsize=mySepSize,
         ),
-        widget.Volume(foreground=bg, background=aqua, padding=5),
+        widget.Systray(background=aqua, padding=5),
         widget.TextBox(
             text=mySep,
             background=aqua,
@@ -235,8 +258,16 @@ def init_widgets_list():
             padding=mySepPadding,
             fontsize=mySepSize,
         ),
-        # widget.BatteryIcon(),
-        widget.Battery(background=blue, foreground=bg),
+        widget.CurrentLayoutIcon(
+            # custom_icon_paths=[os.path.expanduser("~/.config/qtile/icons")],
+            foreground=bg,
+            background=blue,
+            padding=0,
+            scale=0.7,
+        ),
+        widget.CurrentLayout(
+            foreground=fg, background=blue, font="Fira Sans Regular", padding=5
+        ),
         widget.TextBox(
             text=mySep,
             background=blue,
@@ -250,20 +281,26 @@ def init_widgets_list():
             background=purple,
             format="%a, %d.%m.%y | %H:%M:%S ",
         ),
+        # widget.Volume(foreground=bg, background=aqua, padding=5),
+        # widget.BatteryIcon(),
+        # widget.Battery(background=blue, foreground=bg),
     ]
 
 
-def init_screens(widgets_list):
+def init_screens():
+    widgets_1 = init_widgets_list()
+    widgets_2 = init_widgets_list()
+    widgets_2.pop(12)
     return [
-        Screen(top=bar.Bar(widgets=widgets_list, opacity=1.0, size=myPanelHeight)),
-        Screen(top=bar.Bar(widgets=widgets_list, opacity=1.0, size=myPanelHeight)),
-        Screen(top=bar.Bar(widgets=widgets_list, opacity=1.0, size=myPanelHeight)),
+        Screen(
+            top=bar.Bar(widgets=widgets_1, opacity=1.0, size=myPanelHeight)
+        ),  # , margin=8
+        Screen(top=bar.Bar(widgets=widgets_2, opacity=1.0, size=myPanelHeight)),
     ]
 
 
 if __name__ in ["__main__", "config"]:
-    widgets_list = init_widgets_list()
-    screens = init_screens(widgets_list)
+    screens = init_screens()
 
 mouse = [
     Drag(
@@ -287,12 +324,13 @@ cursor_wrap = False
 floating_layout = layout.Floating(
     float_rules=[
         *layout.Floating.default_float_rules,
-    ]
+    ],
+    **layout_theme
 )
 auto_fullscreen = True
 focus_on_window_activation = "smart"
-# reconfigure_screens = True
-# auto_minimize = True
+reconfigure_screens = True
+auto_minimize = True
 
 
 @hook.subscribe.startup_once
@@ -300,6 +338,25 @@ def start_once():
     home = os.path.expanduser("~")
     subprocess.call([home + "/.config/qtile/autostart.sh"])
     # subprocess.call(['xsetroot', '-cursor_name', 'left_ptr']) # Set cursor
+
+
+@hook.subscribe.startup
+def dbus_register():
+    id = os.environ.get("DESKTOP_AUTOSTART_ID")
+    if not id:
+        return
+    subprocess.Popen(
+        [
+            "dbus-send",
+            "--session",
+            "--print-reply",
+            "--dest=org.gnome.SessionManager",
+            "/org/gnome/SessionManager",
+            "org.gnome.SessionManager.RegisterClient",
+            "string:qtile",
+            "string:" + id,
+        ]
+    )
 
 
 wmname = "LG3D"
