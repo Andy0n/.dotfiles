@@ -22,7 +22,8 @@ local servers = require'lspinstall'.installed_servers()
 for _, server in pairs(servers) do
     require'lspconfig'[server].setup{
         on_attach = on_attach,
-        capabilities = capabilities,
+        capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+        --capabilities = capabilities,
     }
 end
 

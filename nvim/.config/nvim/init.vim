@@ -1,4 +1,4 @@
-" VIMRC by Andreas Himmler
+ "VIMRC by Andreas Himmler
 "
 "  ________  ________   ________      ___    ___ ________  ________
 " |\   __  \|\   ___  \|\   ___ \    |\  \  /  /|\   __  \|\   ___  \
@@ -37,7 +37,13 @@ call plug#begin('~/.vim/plugged')
     " IntelliSense, Autoformat, Autocomplete, ...
     Plug 'neovim/nvim-lspconfig'
     Plug 'kabouzeid/nvim-lspinstall'
-    Plug 'hrsh7th/nvim-compe/'
+    "Plug 'hrsh7th/nvim-compe/'
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'hrsh7th/cmp-buffer'
+    Plug 'hrsh7th/nvim-cmp'
+
+    Plug 'hrsh7th/cmp-vsnip'
+    Plug 'hrsh7th/vim-vsnip'
     "Plug 'glepnir/lspsaga.nvim'
     Plug 'simrat39/symbols-outline.nvim'
     Plug 'L3MON4D3/LuaSnip'
