@@ -23,7 +23,7 @@ alias v='nvim'
 alias p='python'
 alias t='tmux-sessionizer'
 alias c='tmux-cht.sh'
-alias l='exa -laa'
+alias l='exa -laGs type'
 
 # Useful env vars:
 export EDITOR='nvim'
