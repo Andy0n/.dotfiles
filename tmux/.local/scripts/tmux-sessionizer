@@ -3,7 +3,10 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find ~/projects ~/ ~/.config -mindepth 1 -maxdepth 1 -type d | fzf)
+    selected=$(while IFS= read -r folder; do
+        folder=$(eval echo "$folder")
+        find "$folder" -mindepth 1 -maxdepth 1 -type d
+    done < ~/.project_folders | fzf)
 fi
 
 if [[ -z $selected ]]; then
