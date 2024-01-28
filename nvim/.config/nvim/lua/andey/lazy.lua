@@ -71,6 +71,7 @@ require("lazy").setup({
             'L3MON4D3/LuaSnip',
             'saadparwaiz1/cmp_luasnip',
             'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-buffer',
             'rafamadriz/friendly-snippets',
         },
     },
@@ -87,9 +88,19 @@ require("lazy").setup({
     },
     {
         'lukas-reineke/indent-blankline.nvim',
+        main = "ibl",
         opts = {
-            char = '┊',
-            show_trailing_blankline_indent = false,
+            indent = {
+                char = '┊',
+            },
+            scope = {
+                show_start = false,
+                show_end = false,
+            },
+        },
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter',
+            "catppuccin/nvim",
         },
     },
     {
@@ -142,4 +153,3 @@ require("lazy").setup({
         'nvim-treesitter/nvim-treesitter-context',
     },
 })
-
