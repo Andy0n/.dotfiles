@@ -6,6 +6,7 @@
 ###############################################################################
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/oh-my-zsh/"
+export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 
 ZSH_THEME="jaischeema"
 
@@ -17,14 +18,18 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 ###############################################################################
 # aliases:
-alias ls='exa -laa'
+alias ls='eza -laa'
 alias bat='bat --theme="Catppuccin-mocha"'
 alias v='nvim'
 alias n='nvim'
 alias p='python'
 alias t='tmux-sessionizer'
 alias c='tmux-cht.sh'
-alias l='exa -laGs type'
+alias l='eza -laGs type'
+alias ssh='kitty +kitten ssh'
+alias yeet="paru -Rns"
+alias yay="paru"
+alias venv="source venv/bin/activate"
 
 # Useful env vars:
 export EDITOR='nvim'
@@ -51,17 +56,17 @@ export PATH="$HOME/gems/bin:$PATH"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/andy/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/andy/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/andy/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/andy/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
+# __conda_setup="$('/home/andy/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/home/andy/miniconda3/etc/profile.d/conda.sh" ]; then
+#         . "/home/andy/miniconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/home/andy/miniconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
 # <<< conda initialize <<<
 
 # Node Version Manager:
