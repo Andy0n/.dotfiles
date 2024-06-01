@@ -9,6 +9,7 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
 vim.opt.smartindent = true
+
 vim.opt.wrap = false
 
 vim.opt.swapfile = false
@@ -45,5 +46,4 @@ vim.opt.autoread = true
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
-vim.cmd.aunmenu("PopUp.How-to\\ disable\\ mouse")
-vim.cmd.aunmenu("PopUp.-1-")
+vim.opt.showmode = false

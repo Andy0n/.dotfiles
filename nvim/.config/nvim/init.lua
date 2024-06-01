@@ -1,2 +1,1 @@
-require("andey")
-
+require("andy")
