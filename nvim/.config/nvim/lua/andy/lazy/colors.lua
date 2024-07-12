@@ -8,6 +8,10 @@ end
 
 return {
 	{
+		"dasupradyumna/midnight.nvim",
+		lazy = true,
+	},
+	{
 		"catppuccin/nvim",
 		name = "catppuccin",
 		lazy = false,

@@ -1,6 +1,7 @@
 return {
     {
         "L3MON4D3/LuaSnip",
+        name = "luasnip",
         build = "make install_jsregexp",
 
         dependencies = { "rafamadriz/friendly-snippets" },
@@ -8,6 +9,8 @@ return {
         config = function()
             local ls = require("luasnip")
             ls.filetype_extend("javascript", { "jsdoc" })
+
+            require("luasnip.loaders.from_vscode").lazy_load()
 
             --- TODO: What is expand?
             vim.keymap.set({"i"}, "<C-s>e", function() ls.expand() end, {silent = true})

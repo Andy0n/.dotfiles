@@ -11,7 +11,7 @@ return {
 		main = "ibl",
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
-			"catppuccin/nvim",
+			"catppuccin",
 		},
 		opts = {
 			indent = {

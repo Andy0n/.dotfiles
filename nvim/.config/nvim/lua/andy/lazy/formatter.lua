@@ -8,7 +8,10 @@ return {
 					lua = { "stylua" },
 					python = { "isort", "black" },
 					javascript = { "prettier" },
+					typescript = { "prettier" },
 					java = { "google-java-format" },
+					-- java = { "clang-format" },
+					rust = { "rustfmt" },
 				},
 			})
 

@@ -6,7 +6,7 @@ return {
 
 			lint.linters_by_ft = {
 				python = { "flake8" },
-				javascript = { "eslint" },
+				-- javascript = { "eslint" },
 				java = { "checkstyle" },
 			}
 
