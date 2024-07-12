@@ -1,0 +1,152 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: FiraCode Nerd Font, monospace;
+    font-weight: bold;
+    font-size: 14px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: rgba(21, 18, 27, 0);
+    color: #cdd6f4;
+}
+
+tooltip {
+    background: #1e1e2e;
+    /* border-radius: 10px; */
+    border-radius: 0;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #11111b;
+}
+
+#workspaces button {
+    padding: 4px;
+    color: #6c7086;
+}
+
+#workspaces button.persistent {
+    color: #313244;
+}
+
+#workspaces button.active {
+    color: #f38ba8;
+}
+
+#workspaces button:hover {
+    color: #fab387;
+}
+
+#clock,
+#custom-weather,
+#workspaces,
+#window,
+#tray,
+#wireplumber,
+#idle_inhibitor,
+#cpu,
+#memory,
+#network,
+#privacy,
+#custom-power,
+#custom-quit,
+#custom-suspend,
+#custom-lock,
+#custom-reboot,
+#custom-left,
+#custom-updates
+{
+    background: #1e1e2e;
+    padding: 0px 10px;
+    /*margin: 5px 0px;*/
+    margin-top: 5px;
+    /* border: 1px solid #181825; */
+    border: 0px;
+}
+
+/* Left corner */
+/* #custom-quit, */
+#custom-left,
+#wireplumber {
+    border-radius: 5px 0px 0px 5px;
+    /* border-radius: 0; */
+}
+
+#custom-power {
+    color: #f38ba8;
+}
+
+#custom-left,
+/* #custom-power:not(:hover), */
+#wireplumber {
+    margin-left: 5px;
+    /* transition-delay: 280ms; */
+}
+
+/* Right corner*/
+#custom-updates,
+/* #custom-power:hover, */
+#custom-power,
+#custom-weather {
+    border-radius: 0px 5px 5px 0px;
+    /* border-radius: 0; */
+}
+
+#custom-left {
+    padding: 0;
+    margin: 0;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+#custom-quit,
+#custom-power {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+#custom-reboot {
+    padding-right: 15px;
+}
+
+#custom-updates,
+#custom-weather {
+    margin-right: 5px;
+}
+
+/* Both corners */
+/* #custom-power, */
+#clock,
+#workspaces,
+#tray,
+#window {
+    border-radius: 5px;
+    /* border-radius: 0; */
+}
+
+#tray,
+#workspaces,
+#window {
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+/* Colors */
+
+#custom-updates {
+    color: #f5c2e7;
+}
+
+#clock {
+    color: #fab387;
+}
+
+#wireplumber {
+    color: #fab387;
+}
+
+#network {
+    color: #f9e2af;
+}
+
