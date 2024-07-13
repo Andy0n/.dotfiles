@@ -1,0 +1,4 @@
+#!/bin/bash
+term="$*"
+echo "$term = " | tr -d '\n'
+printf "from math import *\nprint($term)" | python
