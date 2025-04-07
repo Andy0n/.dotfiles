@@ -1,5 +1,5 @@
 function ColorMyPencils(color)
-	color = color or "catppuccin"
+	color = color or "tokyonight"
 	vim.cmd.colorscheme(color)
 
 	-- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
@@ -19,19 +19,25 @@ return {
 		config = function()
 			require("catppuccin").setup({
 				flavour = "mocha",
-				-- transparent_background = true,
+				transparent_background = true,
 				integrations = {
 					indent_blankline = {
 						enabled = true,
-						scope_color = "flamingo", -- catppuccin color (eg. `lavender`) Default: text
-						colored_indent_levels = false,
+						scope_color = "green",
+						colored_indent_levels = true,
 					},
 				},
 			})
 
-			vim.cmd("colorscheme catppuccin")
-
 			ColorMyPencils()
 		end,
+	},
+	{
+		"folke/tokyonight.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {
+          transparent = true,
+        },
 	},
 }

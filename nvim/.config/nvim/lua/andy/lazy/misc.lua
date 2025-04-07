@@ -31,6 +31,16 @@ return {
 
 		config = function() end,
 	},
+	{
+		"tpope/vim-obsession",
+	},
+	{
+		"tjdevries/present.nvim",
+		config = function()
+            present = require("present")
+            -- present.setup({})
+		end,
+	},
 	-- {
 	-- 	"folke/noice.nvim",
 	-- 	event = "VeryLazy",

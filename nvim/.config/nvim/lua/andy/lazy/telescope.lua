@@ -1,6 +1,5 @@
 return {
 	"nvim-telescope/telescope.nvim",
-	tag = "0.1.5",
 	name = "telescope",
 	dependencies = {
 		"plenary",
@@ -16,15 +15,22 @@ return {
 	},
 	config = function()
 		require("telescope").setup({
+			defaults = require("telescope.themes").get_ivy(),
+			pickers = {
+				git_files = {
+					show_untracked = true,
+				},
+			},
 			extensions = {
 				["ui-select"] = {
 					require("telescope.themes").get_dropdown(),
 				},
+				fzf = {},
 			},
 		})
 
-		pcall(require("telescope").load_extension("fzf"))
-		pcall(require("telescope").load_extension("ui-select"))
+		require("telescope").load_extension("fzf")
+		require("telescope").load_extension("ui-select")
 
 		local builtin = require("telescope.builtin")
 		vim.keymap.set("n", "<leader>jf", builtin.find_files, {})
@@ -32,19 +38,19 @@ return {
 		vim.keymap.set("n", "<leader>jh", builtin.help_tags, {})
 		vim.keymap.set("n", "<leader>js", builtin.live_grep, {})
 
-        vim.keymap.set("n", "<leader>jws", function()
-            local word = vim.fn.expand("<cword>")
-            builtin.grep_string({ search = word })
-        end)
+		vim.keymap.set("n", "<leader>jws", function()
+			local word = vim.fn.expand("<cword>")
+			builtin.grep_string({ search = word })
+		end)
 
-        vim.keymap.set("n", "<leader>jWs", function()
-            local word = vim.fn.expand("<cWORD>")
-            builtin.grep_string({ search = word })
-        end)
+		vim.keymap.set("n", "<leader>jWs", function()
+			local word = vim.fn.expand("<cWORD>")
+			builtin.grep_string({ search = word })
+		end)
 
 		vim.keymap.set("n", "<leader>/", function()
-			builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-				winblend = 10,
+			builtin.current_buffer_fuzzy_find(require("telescope.themes").get_ivy({
+				-- winblend = 10,
 				previewer = false,
 			}))
 		end)
