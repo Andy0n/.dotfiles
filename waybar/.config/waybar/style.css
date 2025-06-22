@@ -1,152 +1,88 @@
+@import url("./colors.css");
+
 * {
     border: none;
     border-radius: 0;
+
+    min-height: 0;
+
     font-family: FiraCode Nerd Font, monospace;
     font-weight: bold;
     font-size: 14px;
-    min-height: 0;
+
+    border-radius: 10px;
 }
 
 window#waybar {
-    background: rgba(21, 18, 27, 0);
-    color: #cdd6f4;
+    background-color: alpha(@background, 0.5);
+    color: @foreground;
+    border: 1px solid @color2;
+    border-radius: 10px;
 }
 
 tooltip {
-    background: #1e1e2e;
-    /* border-radius: 10px; */
-    border-radius: 0;
-    border-width: 2px;
-    border-style: solid;
-    border-color: #11111b;
+    background-color: alpha(@background, 0.5);
+    border-radius: 10px;
+    border: 1px solid @color2;
 }
 
+/* Workspaces */
 #workspaces button {
-    padding: 4px;
-    color: #6c7086;
+    padding: 3px;
 }
 
 #workspaces button.persistent {
-    color: #313244;
+    color: @color3;
+}
+
+#workspaces button.empty {
+    color: @color8;
 }
 
 #workspaces button.active {
-    color: #f38ba8;
+    color: @color2;
+}
+
+#workspaces button.special {
+    color: @color2;
 }
 
 #workspaces button:hover {
-    color: #fab387;
+    background-color: transparent;
+    color: @color1;
 }
 
 #clock,
-#custom-weather,
 #workspaces,
-#window,
 #tray,
 #wireplumber,
 #idle_inhibitor,
 #cpu,
 #memory,
-#network,
 #privacy,
-#custom-power,
-#custom-quit,
-#custom-suspend,
-#custom-lock,
-#custom-reboot,
-#custom-left,
-#custom-updates
+#custom-notification
 {
-    background: #1e1e2e;
+    background-color: transparent;
     padding: 0px 10px;
-    /*margin: 5px 0px;*/
-    margin-top: 5px;
-    /* border: 1px solid #181825; */
-    border: 0px;
+    margin: 5px;
 }
 
-/* Left corner */
-/* #custom-quit, */
-#custom-left,
-#wireplumber {
-    border-radius: 5px 0px 0px 5px;
-    /* border-radius: 0; */
+#workspaces {
+    padding-left: 0px;
 }
 
-#custom-power {
-    color: #f38ba8;
-}
-
-#custom-left,
-/* #custom-power:not(:hover), */
-#wireplumber {
-    margin-left: 5px;
-    /* transition-delay: 280ms; */
-}
-
-/* Right corner*/
-#custom-updates,
-/* #custom-power:hover, */
-#custom-power,
-#custom-weather {
-    border-radius: 0px 5px 5px 0px;
-    /* border-radius: 0; */
-}
-
-#custom-left {
-    padding: 0;
-    margin: 0;
-    margin-top: 5px;
-    margin-left: 5px;
-}
-
-#custom-quit,
-#custom-power {
-    margin-left: 0;
-    padding-left: 0;
-}
-
-#custom-reboot {
-    padding-right: 15px;
-}
-
-#custom-updates,
-#custom-weather {
-    margin-right: 5px;
-}
-
-/* Both corners */
-/* #custom-power, */
-#clock,
-#workspaces,
-#tray,
-#window {
-    border-radius: 5px;
-    /* border-radius: 0; */
-}
-
-#tray,
-#workspaces,
-#window {
-    margin-right: 5px;
-    margin-left: 5px;
-}
+/* Misc */
 
 /* Colors */
-
-#custom-updates {
-    color: #f5c2e7;
-}
-
 #clock {
-    color: #fab387;
+    color: @foreground;
 }
 
 #wireplumber {
-    color: #fab387;
+    color: @foreground;
 }
 
-#network {
-    color: #f9e2af;
+#custom-pipe {
+    color: @color8;
+    padding: 0px;
 }
-

@@ -6,18 +6,30 @@
     "exclusive": true,
     "passthrough": false,
     "gtk-layer-shell": true,
+    "reload_style_on_change": true,
     "height": 0,
-    "width": 2560,
+    "width": 2550, // 2560 - 2 * 5 (margin)
+    "margin-top": 5,
+    "margin-bottom": 5,
 
     // left
     "modules-left": [
-        "clock",
         "hyprland/workspaces"
     ],
     "hyprland/workspaces": {
         "on-scroll-up": "hyprctl dispatch workspace e+1",
         "on-scroll-down": "hyprctl dispatch workspace e-1",
-        "format": "{name}"
+        "format": "{icon}",
+        "format-icons": {
+            "active": "",
+            "default": "",
+            "empty": "",
+            "special": ""
+        },
+        "persistent-workspaces": {
+            "*": [1,2,3,4,5,6,7,8,9,10]
+        },
+        "show-special": true
     },
     "clock": {
         "format": "{:%H:%M}",
@@ -27,27 +39,27 @@
 
     //middle
     "modules-center": [
-        "hyprland/window"
+        "clock"
     ],
-    "hyprland/window": {
-        "format": "{}"
-    },
 
     //right
     "modules-right": [
         "tray",
+        "custom/pipe",
         "wireplumber",
-        "idle_inhibitor",
         "cpu",
         "memory",
-        "custom/updates",
-        "custom/left",
-        "group/power"
+        "custom/pipe",
+        "idle_inhibitor",
+        "custom/notification"
     ],
     "tray": {
         "icon-size": 13,
         "spacing": 10,
         "show-passive-items": true
+    },
+    "custom/pipe": {
+        "format": "|"
     },
     "wireplumber": {
         "format": "{volume}% {icon}",
@@ -79,54 +91,24 @@
         "format": "{used}GB",
         "max-length": 10
     },
-    "custom/updates": {
-        "exec": "paru -Qu | wc -l",
-        "interval": 7200,
-        "format": "{} \udb80\uddda"
-    },
-    "custom/left" : {
-        "format": " "
-    },
-    "group/power": {
-        "orientation": "horizontal",
-        "drawer": {
-            "transition-duration": 500,
-            "children-class": "not-power",
-            "transition-left-to-right": false
+    "custom/notification": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+          "notification": "<span foreground='#f38ba8'><sup></sup></span>",
+          "none": "",
+          "dnd-notification": "<span foreground='#f38ba8'><sup></sup></span>",
+          "dnd-none": "",
+          "inhibited-notification": "<span foreground='#f38ba8'><sup></sup></span>",
+          "inhibited-none": "",
+          "dnd-inhibited-notification": "<span foreground='#f38ba8'><sup></sup></span>",
+          "dnd-inhibited-none": ""
         },
-        "modules": [
-            "custom/power",
-            "custom/quit",
-            "custom/lock",
-            "custom/suspend",
-            "custom/reboot"
-        ]
-    },
-
-    // power group
-    "custom/quit": {
-        "format": "\udb80\udf43",
-        "tooltip": false,
-        "on-click": "hyprctl dispatch exit"
-    },
-    "custom/lock": {
-        "format": "\uf023",
-        "tooltip": false,
-        "on-click": "swaylock"
-    },
-    "custom/suspend": {
-        "format": "\udb81\udcb2",
-        "tooltip": false,
-        "on-click": "systemctl suspend"
-    },
-    "custom/reboot": {
-        "format": "\udb81\udf09",
-        "tooltip": false,
-        "on-click": "reboot"
-    },
-    "custom/power": {
-        "format": "\u23fb",
-        "tooltip": false,
-        "on-click": "shutdown now"
-    }
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+      }
 }
