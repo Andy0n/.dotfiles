@@ -1,0 +1,387 @@
+$barradius: 5px;
+
+:vars {
+  --foreground: #c0caf5;
+  --background: #1a1b26;
+  --wallpaper: #000000;
+
+  --color0: #15161e;
+  --color1: #f7768e;
+  --color2: #9ece6a;
+  --color3: #e0af68;
+  --color4: #7aa2f7;
+  --color5: #bb9af7;
+  --color6: #7dcfff;
+  --color7: #a9b1d6;
+  --color8: #414868;
+  --color9: #ff899d;
+  --color10: #9fe044;
+  --color11: #faba4a;
+  --color12: #8db0ff;
+  --color13: #c7a9ff;
+  --color14: #a4daff;
+  --color15: #c0caf5;
+
+}
+
+* {
+  all: unset;
+  font-family: "JetBrains Mono", monospace;
+  /* font-family: "Fira Code Nerd Font", monospace; */
+  font-size: 10pt;
+  color: var(--foreground);
+}
+
+button {
+  background-color: var(--color8);
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 8pt;
+  transition: all 0.2s ease-out;
+
+  &:hover {
+    background-color: gtk_alpha(var(--color4), 0.8);
+    /* background-color: gtk_alpha(var(--color2), 0.3); */
+
+    label {
+      /* color: var(--background); */
+    }
+  }
+}
+
+menu {
+  background-color: var(--background);
+  /* background-color: gtk_alpha(var(--background), 0.5); */
+  /* border: 1px solid var(--color4); */
+  border: 1px solid var(--color2);
+  border-radius: 8px;
+  padding: 5px;
+
+  & > menuitem {
+    padding: 5px 8px;
+    border-radius: 4px;
+    margin: 1px 0;
+
+    &:hover {
+      background-color: var(--color8);
+    }
+  }
+}
+
+tooltip {
+  background-color: var(--color0);
+  /* background-color: gtk_alpha(var(--background), 0.5); */
+  color: var(--color7);
+  /* border: 1px solid var(--color4); */
+  border: 1px solid var(--color2);
+  border-radius: 8px;
+  padding: 5px 8px;
+  font-size: 9pt;
+}
+
+scale {
+  min-height: 20px;
+
+  value {
+    font-size: 10pt;
+  }
+
+  trough {
+    min-height: 4px;
+    border-radius: 2px;
+    background-color: gtk_alpha(var(--color8), 0.5);
+  }
+
+  slider {
+    /* min-width: 12px; */
+    min-height: 8px;
+    /* border-radius: 6px; */
+    background-color: var(--color2);
+    background-color: transparent;
+  }
+
+  highlight {
+    background-color: var(--color2);
+    border-radius: 2px;
+  }
+
+  mark {
+    label {
+      font-size: 4pt;
+    }
+
+    indicator {
+      color: blue;
+      background-color: var(--color2);
+    }
+  }
+}
+
+#bar {
+  /* padding: 10px 0 10px 0; */
+  /* padding: 10px; */
+}
+
+#panelbar {
+  /* border: 1px solid var(--color2); */
+  border: 1px solid var(--color8);
+  background-color: gtk_alpha(var(--background), 0.5);
+  // NOTE: left no border:
+  border-left: none;
+  /* border-radius: 0 10px 10px 0; */
+  border-radius: 0 $barradius $barradius 0;
+  /* box-shadow: 0 4px 8px 0 gtk_alpha(var(--background), 0.02); */
+  /* box-shadow: 5 5 1 1px gtk_alpha(var(--wallpaper), 0.003); */
+  /* margin: 15px 15px 15px 0; */
+}
+
+#workspaces {
+  padding: 14px;
+
+  & > button {
+    border: 2px solid var(--color3);
+    border-radius: 999px;
+    min-width: 10px;
+    min-height: 10px;
+    padding: 0;
+    transition: all 0.3s ease-out;
+    background-color: transparent;
+
+    &.active {
+      border-color: var(--color2);
+      min-height: 35px;
+    }
+
+    &.empty {
+      border-color: var(--color8);
+    }
+
+    &:hover {
+      border-color: var(--color1);
+    }
+
+    &.special {
+      border-color: var(--color4);
+      background-color: var(--color4);
+
+      &:hover {
+        border-color: var(--color1);
+        background-color: var(--color1);
+        /* border-color: var(--color14); */
+        /* background-color: var(--color14); */
+      }
+    }
+  }
+}
+
+#panelbox {
+  padding: 5px;
+  min-width: 320px;
+  border-right: 1px solid var(--color8);
+
+  .panel {
+    .panel-header {
+      padding: 5px 5px 10px 5px;
+      margin-bottom: 5px;
+      border-bottom: 1px solid var(--color8);
+
+      label {
+        font-weight: bold;
+      }
+    }
+
+    .panel-sections {
+      padding: 5px;
+
+      .section {
+        background-color: gtk_alpha(var(--color0), 0.5);
+        border: 1px solid var(--color8);
+        border-radius: 8px;
+        margin-bottom: 8px;
+        padding: 5px;
+
+        .section-header {
+          padding: 2px;
+          /* padding-left: 4px; // NOTE: needed if icon? */
+
+          label {
+            font-weight: bold;
+          }
+
+          .section-icon-reveal {
+            font-size: 12pt;
+          }
+        }
+
+        .section-content {
+          .section-item {
+            padding: 5px;
+            margin: 2px 0;
+            border-radius: 4px;
+            background-color: gtk_alpha(var(--color8), 0.3);
+          }
+        }
+      }
+    }
+  }
+}
+
+.notification {
+  .notification-header {
+    margin-bottom: 5px;
+
+    .notification-summary {
+      font-weight: bold;
+      font-size: 10pt;
+      color: var(--color15);
+    }
+
+    .notification-timestamp {
+      font-size: 8pt;
+      font-style: italic;
+      color: var(--color7);
+    }
+  }
+
+  .notification-body {
+    font-size: 9pt;
+    color: var(--color7);
+  }
+
+  .notification-buttons {
+    margin-top: 5px;
+    padding-top: 5px;
+    border-top: 1px dashed var(--color8);
+
+    button {
+      /* border: 1px solid transparent; */
+      color: var(--color14);
+
+      &.notification-action-button {
+        background-color: gtk_alpha(var(--color8), 0.7);
+
+        &:hover {
+          background-color: gtk_alpha(var(--color4), 0.8);
+          /* background-color: gtk_alpha(var(--color2), 0.3); */
+
+          label {
+            /* color: var(--background); */
+          }
+        }
+      }
+
+      &.notification-dismiss-button {
+        background-color: gtk_alpha(var(--color1), 0.5);
+
+        &:hover {
+          background-color: var(--color1);
+        }
+      }
+    }
+  }
+}
+
+#systemtray {
+  /* padding: 5px; */
+
+  & > button {
+    /* margin: 5px; */
+    padding: 10px 5px;
+    border-radius: 0;
+    background-color: transparent;
+
+    &:hover {
+      background-color: gtk_alpha(var(--color4), 0.3);
+      /* background-color: gtk_alpha(var(--color2), 0.3); */
+      /* color: var(--color0); */
+    }
+  }
+
+  // last button has border radius bottom left
+  button:last-child {
+    border-radius: 0 0 $barradius 0;
+  }
+}
+
+#panelbuttons {
+  margin-top: 5px;
+  border-top: 1px dashed var(--color8);
+
+  & button {
+    margin: 5px;
+    padding: 5px;
+  }
+}
+
+#datetime {
+  // TODO: if toggle closed, left top corner spills border
+  border-radius: 0 $barradius 0 0;
+  padding: 10px 0 10px 0;
+  background-color: transparent;
+
+  &:hover {
+    background-color: gtk_alpha(var(--color4), 0.3);
+    /* background-color: gtk_alpha(var(--color2), 0.3); */
+  }
+}
+
+#shareoverlay {
+  background-color: gtk_alpha(var(--background), 1);
+  /* background-color: transparent; */
+  border-left: 1px dashed var(--color1);
+  border-right: 1px dashed var(--color1);
+  min-width: 2560px;
+}
+
+#shareoverlaybox,
+#caffeinebox {
+  .active {
+    background-color: gtk_alpha(var(--color1), 0.5);
+
+    label {
+      color: var(--foreground);
+    }
+
+    &:hover {
+      background-color: var(--color1);
+
+      label {
+        color: var(--foreground);
+      }
+    }
+  }
+
+  .inactive {
+  }
+}
+
+.audio-section {
+  .audio-section-label {
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    font-weight: bold;
+    border-bottom: 1px dashed var(--color8);
+  }
+
+  .volume {
+    .volume-label {
+    }
+    .volume-sublabel {
+      font-size: 8pt;
+      font-style: italic;
+      color: var(--color7);
+    }
+    .volume-slider {
+    }
+  }
+}
+
+#powercontrolsbox {
+  #shutdown {
+    background-color: gtk_alpha(var(--color1), 0.5);
+
+    &:hover {
+      background-color: var(--color1);
+    }
+  }
+}
