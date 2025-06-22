@@ -33,7 +33,36 @@ return {
 		require("telescope").load_extension("ui-select")
 
 		local builtin = require("telescope.builtin")
-		vim.keymap.set("n", "<leader>jf", builtin.find_files, {})
+		vim.keymap.set("n", "<leader>jf", function()
+			builtin.find_files({
+				attach_mappings = function(prompt_bufnr, map)
+					local actions = require("telescope.actions")
+					map("i", "<CR>", function()
+						actions.select_default(prompt_bufnr)
+						-- Force proper plugin loading and filetype detection
+						vim.schedule(function()
+							vim.cmd("filetype detect")
+							vim.cmd("doautocmd BufReadPost")
+							vim.cmd("doautocmd BufNewFile")
+							-- Trigger lazy.nvim events
+							vim.api.nvim_exec_autocmds("User", { pattern = "LazyLoad" })
+						end)
+					end)
+					map("n", "<CR>", function()
+						actions.select_default(prompt_bufnr)
+						-- Force proper plugin loading and filetype detection
+						vim.schedule(function()
+							vim.cmd("filetype detect")
+							vim.cmd("doautocmd BufReadPost")
+							vim.cmd("doautocmd BufNewFile")
+							-- Trigger lazy.nvim events
+							vim.api.nvim_exec_autocmds("User", { pattern = "LazyLoad" })
+						end)
+					end)
+					return true
+				end,
+			})
+		end, {})
 		vim.keymap.set("n", "<leader>jg", builtin.git_files, {})
 		vim.keymap.set("n", "<leader>jh", builtin.help_tags, {})
 		vim.keymap.set("n", "<leader>js", builtin.live_grep, {})

@@ -10,6 +10,7 @@ return {
                     python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
 					javascript = { "prettier" },
 					typescript = { "prettier" },
+                    html = { "prettier" },
 					java = { "google-java-format" },
 					-- java = { "clang-format" },
 					rust = { "rustfmt" },

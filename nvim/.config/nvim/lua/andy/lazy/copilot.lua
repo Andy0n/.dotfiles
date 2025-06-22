@@ -11,41 +11,44 @@ return {
 			})
 		end,
 	},
-	{
-		"CopilotC-Nvim/CopilotChat.nvim",
-		dependencies = {
-			"copilot", -- or github/copilot.vim
-			"plenary", -- for curl, log wrapper
-		},
-	       build = "make tiktoken",
-		config = function()
-			local chat = require("CopilotChat")
-	           chat.setup({
-	               model = "o1",
-	               debug = false
-	           })
-			vim.keymap.set({ "n", "v" }, "<leader>cc", chat.toggle, {})
-		end,
-		-- See Commands section for default commands if you want to lazy load on them
-	},
+	-- {
+	-- 	"CopilotC-Nvim/CopilotChat.nvim",
+	-- 	dependencies = {
+	-- 		"copilot", -- or github/copilot.vim
+	-- 		"plenary", -- for curl, log wrapper
+	-- 	},
+	--        build = "make tiktoken",
+	-- 	config = function()
+	-- 		local chat = require("CopilotChat")
+	--            chat.setup({
+	--                model = "o1",
+	--                debug = false
+	--            })
+	-- 		vim.keymap.set({ "n", "v" }, "<leader>cc", chat.toggle, {})
+	-- 	end,
+	-- 	-- See Commands section for default commands if you want to lazy load on them
+	-- },
 	{
 		"yetone/avante.nvim",
 		event = "VeryLazy",
 		version = false, -- Never set this value to "*"! Never!
 		opts = {
-			provider = "copilot",
-			copilot = {
-				model = "claude-3.7-sonnet-thought",
-				-- model = "claude-3.7-sonnet",
-				-- model = "gpt-4o-2024-11-20",
-				-- model = "o1",
+            provider = "copilot",
+			providers = {
+				copilot = {
+					model = "claude-sonnet-4",
+					-- model = "claude-3.7-sonnet-thought",
+					-- model = "claude-3.7-sonnet",
+					-- model = "gpt-4o-2024-11-20",
+					-- model = "o1",
+				},
 			},
 			mappings = {
 				-- ask = "<leader>cc",
 			},
-            behavior = {
-                -- auto_suggestions= true,
-            },
+			behavior = {
+				-- auto_suggestions= true,
+			},
 		},
 		-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
 		build = "make",

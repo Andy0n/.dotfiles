@@ -1,5 +1,8 @@
 return {
-	{ "numToStr/Comment.nvim", opts = {} },
+	{
+		"numToStr/Comment.nvim",
+		opts = {},
+	},
 	{
 		"folke/todo-comments.nvim",
 		event = "VimEnter",
@@ -37,10 +40,42 @@ return {
 	{
 		"tjdevries/present.nvim",
 		config = function()
-            present = require("present")
-            -- present.setup({})
+			present = require("present")
+			-- present.setup({})
 		end,
 	},
+	{
+		"stevearc/oil.nvim",
+		---@module 'oil'
+		---@type oil.SetupOpts
+		opts = {},
+		-- Optional dependencies
+		dependencies = { { "echasnovski/mini.icons", opts = {} } },
+		-- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
+		-- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
+		lazy = false,
+		config = function()
+			local oil = require("oil")
+			oil.setup({
+				view_options = {
+					show_hidden = true,
+				},
+			})
+			vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+		end,
+	},
+	{
+		"karb94/neoscroll.nvim",
+		opts = {},
+	},
+	-- {
+	-- 	"sphamba/smear-cursor.nvim",
+	-- 	opts = {
+	-- 		stiffness = 0.5,
+	-- 		trailing_stiffness = 0.49,
+	-- 		never_draw_over_target = false,
+	-- 	},
+	-- },
 	-- {
 	-- 	"folke/noice.nvim",
 	-- 	event = "VeryLazy",
