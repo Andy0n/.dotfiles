@@ -6,7 +6,7 @@ else
     selected=$(while IFS= read -r folder; do
         folder=$(eval echo "$folder")
         find "$folder" -mindepth 1 -maxdepth 1 -type d
-    done < ~/.tmux-sessionizer-folders | fzf)
+    done < /home/andy/.tmux-sessionizer-folders | fzf --height=0 --color=bg:#16161e)
 fi
 
 if [[ -z $selected ]]; then
