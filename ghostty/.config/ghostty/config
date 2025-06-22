@@ -1,0 +1,22 @@
+theme = tokyonight
+#theme = catppuccin-mocha
+background-opacity = 0.5
+
+font-family = FiraCode Nerd Font
+font-family-bold = FiraCode Nerd Font
+font-family-italic = VictorMono Nerd Font
+font-family-bold-italic = VictorMono Nerd Font
+font-size = 10.0
+
+window-decoration = false
+window-theme = system
+window-padding-x = 5
+window-padding-y = 5
+
+shell-integration = zsh
+shell-integration-features = no-cursor
+cursor-style = block
+
+# Keybinds:
+keybind = ctrl+shift+r=reload_config
+# idk but default keybinds seem not to work correctly
